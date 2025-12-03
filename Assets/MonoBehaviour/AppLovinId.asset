@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca85bf3d8858c7593257711e9bcba3d5, type: 3}
+  m_Name: AppLovinId
+  m_EditorClassIdentifier:
+  defaultDelayTime: 60
+  defaultLevelShowInter: 5
+  maxInterId_Android: 2aca61abc5dac264
+  maxRewardId_Android: 9961ac2ceed09e22
+  maxBannerId_Android: c4c31d4990d981f5
+  maxInterId_Ios: 9eb30ecc0f57a2f3
+  maxRewardId_Ios: c9405a76f1c580fb
+  maxBannerId_Ios: c997afb7f0a9702d

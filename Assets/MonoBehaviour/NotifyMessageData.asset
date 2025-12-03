@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8c214bffa5b390f31aeb26262ae012, type: 3}
+  m_Name: NotifyMessageData
+  m_EditorClassIdentifier:
+  offlineDayNoticeMessages:
+  - day: 1
+    messageVariants:
+    - tittle: Hey You,
+      message: Have a nice day! Come and play Fruit Hole now!!
+    - tittle: Hey You,
+      message: More difficult levels for you to challenge. Try it now!!
+    - tittle: Hey You,
+      message: Long time no challenge will make your skills worse. Come and train yourself now!
+    - tittle: Hey You,
+      message: Don't forget to take a break after working! Relax now by Fruit Hole!
+    - tittle: Hey You,
+      message: More levels for you to challenge! Are you still the winner?
+  - day: 2
+    messageVariants:
+    - tittle: Hey You,
+      message: Have a nice day! Come and play Fruit Hole now!!
+    - tittle: Hey You,
+      message: More difficult levels for you to challenge. Try it now!!
+    - tittle: Hey You,
+      message: Long time no challenge will make your skills worse. Come and train yourself now!
+    - tittle: Hey You,
+      message: Don't forget to take a break after working! Relax now by Fruit Hole!
+    - tittle: Hey You,
+      message: More levels for you to challenge! Are you still the winner?
+  - day: 7
+    messageVariants:
+    - tittle: We miss you
+      message: Have a nice day! Come and play Fruit Hole now!!
+    - tittle: We miss you
+      message: More difficult levels for you to challenge. Try it now!!
+    - tittle: We miss you
+      message: Long time no challenge will make your skills worse. Come and train yourself now!
+    - tittle: We miss you
+      message: Don't forget to take a break after working! Relax now by Fruit Hole!
+    - tittle: We miss you
+      message: More levels for you to challenge! Are you still the winner?
