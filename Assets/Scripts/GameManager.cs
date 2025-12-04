@@ -2,172 +2,259 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private TextAsset lv;
-    [SerializeField] private List<Transform> points, fruitGreen, fruitOrange;
-    [SerializeField] private Transform holeGreen, holeOrange;
+    [SerializeField] private List<Fruit> fruitGreen, fruitOrange;
+    [SerializeField] private List<Transform> points, cupGreen, cupOrange, cupPouringGreen, cupPouringOrange;
+    [SerializeField] private Transform holeGreen, holeOrange, blenderGreen, blenderOrange, parentFruitGreen,
+        parentFruitOrange, bigCupGreen, bigCupOrange;
+
+    [SerializeField] private RectTransform fillGreen, fillOrange;
     [SerializeField] private float radius;
+    [SerializeField] private Button btnBlenderGreen, btnBlenderOrange;
     
-    [Button]
-    private void RunFruit()
+    private Tween _rotateBlenderGreen, _rotateBlenderOrange, _twBigCupGreen, _twBigCupOrange;
+    private int cupFillGreen, cupFillOrange;
+    private List<Vector2> posInitCupGreen;
+    private Vector2 posInitBigCupGreen, posInitBigCupOrange;
+
+    private void Start()
     {
-        var pointPos = points.Select(p => p.position).ToList();
-        var fruitGreenPos = fruitGreen.Select(p => p.position).ToList();
-        var fruitOrangePos = fruitOrange.Select(p => p.position).ToList();
-        var targetGreen = RandomPointInsideCircle(holeGreen.position, radius);
-        var targetOrange = RandomPointInsideCircle(holeOrange.position, radius);
-        FindAndMove(fruitGreen, targetGreen);
+        btnBlenderGreen.onClick.AddListener(RunFruitGreen);
+        btnBlenderOrange.onClick.AddListener(RunFruitOrange);
+        posInitCupGreen = cupGreen.Select(c => (Vector2)c.transform.position).ToList();
+        posInitBigCupGreen = bigCupGreen.transform.position;
+        posInitBigCupOrange = bigCupOrange.transform.position;
+        foreach (var fruit in fruitGreen)
+        {
+            fruit.startPos = fruit.fruit.position;
+        }
+        foreach (var fruit in fruitOrange)
+        {
+            fruit.startPos = fruit.fruit.position;
+        }
+        ReloadLevel();
     }
     [Button]
+    private void ReloadLevel()
+    {
+        fillGreen.gameObject.SetActive(false);
+        fillOrange.gameObject.SetActive(false);
+        bigCupGreen.transform.position = posInitBigCupGreen;
+        bigCupOrange.transform.position= posInitBigCupOrange;
+        for (int i = 0; i < posInitCupGreen.Count; i++)
+        {
+            cupGreen[i].position = posInitCupGreen[i];
+        }
+        cupFillGreen = 16;
+        cupFillOrange = 16;
+        cupGreen.ForEach(c => c.gameObject.SetActive(false));
+        fruitGreen.ForEach(f => f.Reset());
+        fruitOrange.ForEach(f => f.Reset());
+    }
+    [Button]
+    private void SetData()
+    {
+        if (cupGreen.All(c => c.gameObject.activeSelf)) return;
+        var cupShow = cupGreen.First(c => !c.gameObject.activeSelf);
+        cupShow.gameObject.SetActive(true);
+        var posMove = cupShow.transform.position;
+        cupShow.transform.position = new Vector2(posMove.x - 0.1f, posMove.y + 0.2f);
+        DOTween.Sequence().Append(cupShow.DOMove(posMove,  0.2f))
+            .Join(cupShow.GetComponent<Image>().DOFade(1, 0.2f).From(0));
+    }
+    
     private void RunFruitGreen()
     {
-        var f = fruitGreen.First();
-        var targetGreen = RandomPointInsideCircle(holeGreen.position, radius);
-        var pointPos = points.Select(p => (Vector2)p.position).ToList();
-        float step = Vector2.Distance(fruitGreen.First().position, fruitGreen[1].position);
-        List<Vector2> path = FindPathGreen(f.position, targetGreen, pointPos, step, 0.1f);
-        Debug.Log("Path: " + string.Join(",", path));
-        // thực hiện di chuyển theo path
-        StartCoroutine(MoveAlongPath(f, path));
+        FindAndMove(fruitGreen, holeGreen.position);
     }
-
-    private List<Vector2> FindPathGreen(Vector2 start, Vector2 goal, List<Vector2> pos, float step, float tolerance)
+    private void RunFruitOrange()
+    {
+        FindAndMove(fruitOrange, holeOrange.position);
+    }
+    private void FindAndMove(List<Fruit> fruit, Vector2 holePos)
+    {
+        if (fruit.Count < 1) return;
+        float step = Vector2.Distance(fruit.First().fruit.position, fruit[1].fruit.position); // khoảng cách giữa các pointPos
+        var pointPos = points.Select(p => (Vector2)p.position).ToList();
+        foreach (var f in fruit)
+        {
+            var targetPos = RandomPointInsideCircle(holePos, radius);
+            List<Vector2> path = FindPath(f.fruit.position, targetPos, step, pointPos, 0.1f);
+            //Debug.Log("Path: " + string.Join(",", path));
+            // thực hiện di chuyển theo path
+            if (f.move != null) StopCoroutine(f.move);
+            f.move = StartCoroutine(MoveAlongPath(f, path, targetPos));
+        }
+    }
+    List<Vector2> FindPath(Vector2 start, Vector2 goal, float step, List<Vector2> pos, float tolerance)
     {
         List<Vector2> path = new List<Vector2>();
         path.Add(start);
         for (int i = 0; i < pos.Count; i++)
         {
-            Debug.Log("start: " + path.Last());
-            var neighbors = GetNeighborsGreen(path.Last(), pos, step, tolerance);
-            Debug.Log("GetNeighborsGreen: " + string.Join(",", neighbors));
+            //Debug.Log("start: " + path.Last());
+            var neighbors = GetNeighbors(path.Last(), pos, step, tolerance);
+            //Debug.Log("GetNeighborsGreen: " + string.Join(",", neighbors));
+            if (neighbors == null) break;
             var p = neighbors.OrderBy(n => Vector2.Distance(n, goal)).First();
             path.Add(p);
-            Debug.Log($"distance: {p}<<>>" + Vector2.Distance(path.Last(), goal));
+            //Debug.Log($"distance: {p}<<>>" + Vector2.Distance(path.Last(), goal));
             if (Vector2.Distance(path.Last(), goal) < radius * 2.1f) break;
         }
         
         return path;
     }
-    
-    List<Vector2> GetNeighborsGreen(Vector2 startPos, List<Vector2> pos, float step, float tolerance)
+
+    List<Vector2> GetNeighbors(Vector2 startPos, List<Vector2> pos, float step, float tolerance)
     {
         return pos.Where(p => Vector2.Distance(p, startPos) < step + tolerance).ToList();
     }
-    private void FindAndMove(List<Transform> fruit, Vector2 targetPos)
-    {
-        if (fruit.Count < 1) return;
-        float step = Vector2.Distance(fruit.First().position, fruit[1].position); // khoảng cách giữa các pointPos
-        var pointPos = points.Select(p => (Vector2)p.position).ToList();
-        foreach (var f in fruit)
-        {
-            List<Vector2> path = FindPath(f.position, targetPos, step, pointPos, 0.1f);
-            Debug.Log("Path: " + string.Join(",", path));
-            // thực hiện di chuyển theo path
-            StartCoroutine(MoveAlongPath(f, path));
-        }
-    }
-    List<Vector2> FindPath(Vector2 start, Vector2 goal, float step, List<Vector2> po, float tolerance)
-    {
-        Queue<Vector2> queue = new Queue<Vector2>();
-        queue.Enqueue(start);
 
-        Dictionary<Vector2, Vector2> cameFrom = new Dictionary<Vector2, Vector2>();
-        cameFrom[start] = start;
-
-        while (queue.Count > 0)
-        {
-            Vector2 current = queue.Dequeue();
-
-            if (current == goal)
-                break;
-
-            foreach (var next in GetNeighbors(current, step, po, tolerance))
-            {
-                if (!cameFrom.ContainsKey(next))
-                {
-                    cameFrom[next] = current;
-                    queue.Enqueue(next);
-                }
-            }
-        }
-
-        // reconstruct path
-        List<Vector2> path = new List<Vector2>();
-
-        if (!cameFrom.ContainsKey(goal))
-            return path;
-
-        Vector2 cur = goal;
-        while (cur != start)
-        {
-            path.Add(cur);
-            cur = cameFrom[cur];
-        }
-
-        path.Reverse();
-        return path;
-    }
-
-    List<Vector2> GetNeighbors(Vector2 pos, float step, List<Vector2> po, float tolerance)
-    {
-        List<Vector2> result = new List<Vector2>();
-
-        Vector2[] dirs =
-        {
-            new Vector2(step, 0),    // phải
-            new Vector2(-step, 0),   // trái
-            new Vector2(0, step),    // lên
-            new Vector2(0, -step),   // xuống
-        };
-
-        foreach (var d in dirs)
-        {
-            Vector2 ideal = pos + d;
-            Vector2 closest = FindClosestGridPoint(ideal, po, tolerance);
-
-            // nếu lưới có điểm hợp lệ gần vị trí ideal
-            if (Vector2.Distance(ideal, closest) <= tolerance)
-                result.Add(closest);
-        }
-
-        return result;
-    }
-    Vector2 FindClosestGridPoint(Vector2 target, List<Vector2> po, float tolerance)
-    {
-        float minDist = float.MaxValue;
-        Vector2 closest = target;
-
-        foreach (var p in po)
-        {
-            float d = Vector2.Distance(p, target);
-            if (d < minDist && d <= tolerance)
-            {
-                minDist = d;
-                closest = p;
-            }
-        }
-
-        return closest;
-    }
-
-    IEnumerator MoveAlongPath(Transform obj, List<Vector2> path)
+    IEnumerator MoveAlongPath(Fruit obj, List<Vector2> path, Vector2 target)
     {
         foreach (var p in path)
         {
-            while (Vector2.Distance(obj.position, p) > 0.01f)
+            while (Vector2.Distance(obj.fruit.position, p) > 0.01f)
             {
-                obj.position = Vector2.MoveTowards(obj.position, p, Time.deltaTime * 3f);
+                obj.fruit.position = Vector2.MoveTowards(obj.fruit.position, p, Time.deltaTime * 3f);
                 yield return null;
             }
         }
+        
+        obj.jump?.Kill();
+        obj.jump = DOTween.Sequence().Append(obj.fruit.DOJump(target, 1f, 1, 0.3f))
+            .AppendCallback(() =>
+            {
+                //Debug.Log($"cupFillOrange: {obj.typeFruit}<>{cupFillOrange}");
+                Poring(obj.typeFruit);
+                Blender(obj.typeFruit);
+            })
+            .Append(obj.image.DOFade(0, 0.2f)).AppendInterval(1f).AppendCallback(() =>
+            {
+                switch (obj.typeFruit)
+                {
+                    case TypeFruit.Green when cupFillGreen <= 0:
+                        _twBigCupGreen?.Kill();
+                        _twBigCupGreen = bigCupGreen.DOMove(new Vector2(10, 0), 2f);
+                        break;
+                    case TypeFruit.Orange when cupFillOrange <= 0:
+                        _twBigCupOrange?.Kill();
+                        _twBigCupOrange = bigCupOrange.DOMove(new Vector2(10, 0), 2f);
+                        break;
+                }
+            })
+            .AppendInterval(1f).AppendCallback(() =>
+            {
+                if (cupFillGreen <= 0 && cupFillOrange <= 0)
+                {
+                    _twBigCupGreen?.Kill();
+                    _twBigCupOrange?.Kill();
+                    ReloadLevel();
+                }
+            });
     }
-    
+
+    private void Poring(TypeFruit typeFruit)
+    {
+        if (typeFruit != TypeFruit.Green)
+        {
+            cupFillOrange--;
+            if (cupFillOrange == 10)
+            {
+                fillOrange.gameObject.SetActive(true);
+                fillOrange.DOAnchorPosY(0, 0.6f).From(new Vector2(0, -40f));
+            }
+            if (cupPouringOrange.Count(c => !c.gameObject.activeSelf) > 0)
+                cupPouringOrange.First(c => !c.gameObject.activeSelf).gameObject.SetActive(true);
+            
+            if (cupFillOrange <= 0)
+            {
+                var cupGreenActivate = cupGreen.Where(c => c.gameObject.activeSelf).ToList();
+                
+                if (cupGreenActivate.Count > 0)
+                {
+                    cupFillGreen -= cupGreenActivate.Count;
+                    for (int i = 0; i < cupGreenActivate.Count; i++)
+                    {
+                        var i1 = i;
+                        var iTarget = i >= cupPouringGreen.Count ? Random.Range(0, cupPouringGreen.Count) : i;
+                        var target = cupPouringGreen[iTarget];
+                        cupGreenActivate[i1].DOMove(target.position, 0.5f)
+                            .OnComplete(() =>
+                            {
+                                cupPouringGreen[iTarget].gameObject.SetActive(true);
+                                cupGreenActivate[i1].gameObject.SetActive(false);
+                                if (i1 == 6)
+                                {
+                                    fillGreen.gameObject.SetActive(true);
+                                    fillGreen.DOAnchorPosY(0, 0.6f).From(new Vector2(0, -40f));
+                                }
+                            });
+                    }
+                }
+            }
+            
+        }
+        else
+        {
+            if (cupFillOrange > 0)
+            {
+                CupWait();
+            }
+            else
+            {
+                cupFillGreen--;
+                if (cupFillGreen == 10)
+                {
+                    fillGreen.gameObject.SetActive(true);
+                    fillGreen.DOAnchorPosY(0, 0.6f).From(new Vector2(0, -40f));
+                }
+                cupPouringGreen.First(c => !c.gameObject.activeSelf).gameObject.SetActive(true);
+            }
+            
+        }
+    }
+
+    private void Blender(TypeFruit typeFruit)
+    {
+        if (typeFruit != TypeFruit.Green)
+        {
+            blenderOrange.rotation = Quaternion.Euler(0f, 0f, 0f);
+            _rotateBlenderOrange?.Kill();
+            _rotateBlenderOrange = blenderOrange
+                .DOLocalRotate(new Vector3(0, 0, 360), 0.4f, RotateMode.LocalAxisAdd)
+                .SetLoops(2)
+                .SetEase(Ease.Linear);
+        }
+        else
+        {
+            blenderGreen.rotation = Quaternion.Euler(0f, 0f, 0f);
+            _rotateBlenderGreen?.Kill();
+            _rotateBlenderGreen = blenderGreen
+                .DOLocalRotate(new Vector3(0, 0, 360), 0.4f, RotateMode.LocalAxisAdd)
+                .SetLoops(2)
+                .SetEase(Ease.Linear);
+        }
+    }
+    private void CupWait()
+    {
+        if (cupGreen.All(c => c.gameObject.activeSelf)) return;
+        var cupShow = cupGreen.First(c => !c.gameObject.activeSelf);
+        cupShow.gameObject.SetActive(true);
+        var posMove = cupShow.transform.position;
+        cupShow.transform.position = new Vector2(posMove.x - 0.1f, posMove.y + 0.2f);
+        DOTween.Sequence().Append(cupShow.DOMove(posMove,  0.2f))
+            .Join(cupShow.GetComponent<Image>().DOFade(1, 0.2f).From(0));
+    }
     public Vector2 RandomPointInsideCircle(Vector2 center, float r)
     {
         float angle = Random.Range(0f, Mathf.PI * 2f);
