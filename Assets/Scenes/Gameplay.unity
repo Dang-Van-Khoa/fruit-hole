@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 9321331}
   - component: {fileID: 9321330}
   - component: {fileID: 9321329}
+  - component: {fileID: 9321332}
   m_Layer: 0
   m_Name: Anim_Green (10)
   m_TagString: Untagged
@@ -217,6 +218,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9321332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9321327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 9321329}
+  isRunning: 0
 --- !u!1 &14738685
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,6 +982,7 @@ GameObject:
   - component: {fileID: 87880539}
   - component: {fileID: 87880538}
   - component: {fileID: 87880537}
+  - component: {fileID: 87880540}
   m_Layer: 0
   m_Name: Anim_Green
   m_TagString: Untagged
@@ -1052,6 +1069,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &87880540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87880535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 87880537}
+  isRunning: 0
 --- !u!1 &92099808
 GameObject:
   m_ObjectHideFlags: 0
@@ -2078,6 +2110,7 @@ GameObject:
   - component: {fileID: 177249788}
   - component: {fileID: 177249787}
   - component: {fileID: 177249786}
+  - component: {fileID: 177249789}
   m_Layer: 0
   m_Name: Anim_Green (14)
   m_TagString: Untagged
@@ -2164,6 +2197,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &177249789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177249784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 177249786}
+  isRunning: 0
 --- !u!1 &187513595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,6 +2299,7 @@ GameObject:
   - component: {fileID: 191383452}
   - component: {fileID: 191383451}
   - component: {fileID: 191383450}
+  - component: {fileID: 191383453}
   m_Layer: 0
   m_Name: Anim_Green
   m_TagString: Untagged
@@ -2337,6 +2386,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &191383453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191383448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 191383450}
+  isRunning: 0
 --- !u!1 &197133995
 GameObject:
   m_ObjectHideFlags: 0
@@ -2979,6 +3043,7 @@ GameObject:
   - component: {fileID: 238286296}
   - component: {fileID: 238286295}
   - component: {fileID: 238286294}
+  - component: {fileID: 238286297}
   m_Layer: 0
   m_Name: Anim_Green (11)
   m_TagString: Untagged
@@ -3065,6 +3130,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &238286297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238286292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 238286294}
+  isRunning: 0
 --- !u!1 &243206149
 GameObject:
   m_ObjectHideFlags: 0
@@ -3077,6 +3157,7 @@ GameObject:
   - component: {fileID: 243206153}
   - component: {fileID: 243206152}
   - component: {fileID: 243206151}
+  - component: {fileID: 243206154}
   m_Layer: 0
   m_Name: Anim_Green (11)
   m_TagString: Untagged
@@ -3163,6 +3244,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &243206154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243206149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 243206151}
+  isRunning: 0
 --- !u!1 &274190681
 GameObject:
   m_ObjectHideFlags: 0
@@ -3175,6 +3271,7 @@ GameObject:
   - component: {fileID: 274190685}
   - component: {fileID: 274190684}
   - component: {fileID: 274190683}
+  - component: {fileID: 274190686}
   m_Layer: 0
   m_Name: Anim_Green (8)
   m_TagString: Untagged
@@ -3261,6 +3358,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &274190686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274190681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 274190683}
+  isRunning: 0
 --- !u!1 &278993238
 GameObject:
   m_ObjectHideFlags: 0
@@ -3596,6 +3708,7 @@ GameObject:
   - component: {fileID: 389731997}
   - component: {fileID: 389731996}
   - component: {fileID: 389731995}
+  - component: {fileID: 389731998}
   m_Layer: 0
   m_Name: Anim_Green (6)
   m_TagString: Untagged
@@ -3682,6 +3795,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &389731998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389731993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 389731995}
+  isRunning: 0
 --- !u!1 &397232491
 GameObject:
   m_ObjectHideFlags: 0
@@ -3694,6 +3822,7 @@ GameObject:
   - component: {fileID: 397232495}
   - component: {fileID: 397232494}
   - component: {fileID: 397232493}
+  - component: {fileID: 397232496}
   m_Layer: 0
   m_Name: Anim_Green (13)
   m_TagString: Untagged
@@ -3780,6 +3909,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &397232496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397232491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 397232493}
+  isRunning: 0
 --- !u!1 &412227406
 GameObject:
   m_ObjectHideFlags: 0
@@ -4020,6 +4164,7 @@ GameObject:
   - component: {fileID: 438501176}
   - component: {fileID: 438501175}
   - component: {fileID: 438501174}
+  - component: {fileID: 438501177}
   m_Layer: 0
   m_Name: Anim_Green (12)
   m_TagString: Untagged
@@ -4106,6 +4251,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &438501177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438501172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 438501174}
+  isRunning: 0
 --- !u!1 &439454267
 GameObject:
   m_ObjectHideFlags: 0
@@ -4255,6 +4415,7 @@ GameObject:
   - component: {fileID: 447481800}
   - component: {fileID: 447481799}
   - component: {fileID: 447481798}
+  - component: {fileID: 447481801}
   m_Layer: 0
   m_Name: Anim_Green (5)
   m_TagString: Untagged
@@ -4341,6 +4502,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &447481801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447481796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 447481798}
+  isRunning: 0
 --- !u!1 &450651994
 GameObject:
   m_ObjectHideFlags: 0
@@ -4774,6 +4950,7 @@ GameObject:
   - component: {fileID: 477443596}
   - component: {fileID: 477443595}
   - component: {fileID: 477443594}
+  - component: {fileID: 477443597}
   m_Layer: 0
   m_Name: Anim_Green (4)
   m_TagString: Untagged
@@ -4860,6 +5037,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &477443597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477443592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 477443594}
+  isRunning: 0
 --- !u!1 &483831467
 GameObject:
   m_ObjectHideFlags: 0
@@ -4947,6 +5139,7 @@ GameObject:
   - component: {fileID: 484543298}
   - component: {fileID: 484543297}
   - component: {fileID: 484543296}
+  - component: {fileID: 484543299}
   m_Layer: 0
   m_Name: Anim_Green (10)
   m_TagString: Untagged
@@ -5033,6 +5226,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &484543299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484543294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 484543296}
+  isRunning: 0
 --- !u!1 &496699607
 GameObject:
   m_ObjectHideFlags: 0
@@ -5045,6 +5253,7 @@ GameObject:
   - component: {fileID: 496699611}
   - component: {fileID: 496699610}
   - component: {fileID: 496699609}
+  - component: {fileID: 496699612}
   m_Layer: 0
   m_Name: Anim_Green (1)
   m_TagString: Untagged
@@ -5131,6 +5340,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &496699612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496699607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 496699609}
+  isRunning: 0
 --- !u!1 &496880597
 GameObject:
   m_ObjectHideFlags: 0
@@ -5948,6 +6172,7 @@ GameObject:
   - component: {fileID: 615796088}
   - component: {fileID: 615796087}
   - component: {fileID: 615796086}
+  - component: {fileID: 615796089}
   m_Layer: 0
   m_Name: Anim_Green (8)
   m_TagString: Untagged
@@ -6034,6 +6259,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &615796089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615796084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 615796086}
+  isRunning: 0
 --- !u!1 &621716679
 GameObject:
   m_ObjectHideFlags: 0
@@ -6121,6 +6361,7 @@ GameObject:
   - component: {fileID: 621827221}
   - component: {fileID: 621827220}
   - component: {fileID: 621827219}
+  - component: {fileID: 621827222}
   m_Layer: 0
   m_Name: Anim_Green (6)
   m_TagString: Untagged
@@ -6207,6 +6448,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &621827222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621827217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 621827219}
+  isRunning: 0
 --- !u!1 &641329081
 GameObject:
   m_ObjectHideFlags: 0
@@ -6444,6 +6700,7 @@ GameObject:
   - component: {fileID: 691861786}
   - component: {fileID: 691861785}
   - component: {fileID: 691861784}
+  - component: {fileID: 691861787}
   m_Layer: 0
   m_Name: Anim_Green (15)
   m_TagString: Untagged
@@ -6530,6 +6787,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &691861787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691861782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 691861784}
+  isRunning: 0
 --- !u!1 &702729251
 GameObject:
   m_ObjectHideFlags: 0
@@ -6542,6 +6814,7 @@ GameObject:
   - component: {fileID: 702729255}
   - component: {fileID: 702729254}
   - component: {fileID: 702729253}
+  - component: {fileID: 702729256}
   m_Layer: 0
   m_Name: Anim_Green (9)
   m_TagString: Untagged
@@ -6628,6 +6901,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &702729256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702729251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 702729253}
+  isRunning: 0
 --- !u!1 &740144513
 GameObject:
   m_ObjectHideFlags: 0
@@ -6888,6 +7176,7 @@ GameObject:
   - component: {fileID: 810305060}
   - component: {fileID: 810305059}
   - component: {fileID: 810305058}
+  - component: {fileID: 810305061}
   m_Layer: 0
   m_Name: Anim_Green (1)
   m_TagString: Untagged
@@ -6974,6 +7263,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &810305061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810305056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 810305058}
+  isRunning: 0
 --- !u!1 &851846593
 GameObject:
   m_ObjectHideFlags: 0
@@ -7348,6 +7652,7 @@ GameObject:
   - component: {fileID: 901288295}
   - component: {fileID: 901288294}
   - component: {fileID: 901288293}
+  - component: {fileID: 901288296}
   m_Layer: 0
   m_Name: Anim_Green (7)
   m_TagString: Untagged
@@ -7434,6 +7739,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &901288296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901288291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 901288293}
+  isRunning: 0
 --- !u!1 &912546872
 GameObject:
   m_ObjectHideFlags: 0
@@ -7446,6 +7766,7 @@ GameObject:
   - component: {fileID: 912546876}
   - component: {fileID: 912546875}
   - component: {fileID: 912546874}
+  - component: {fileID: 912546877}
   m_Layer: 0
   m_Name: Anim_Green (15)
   m_TagString: Untagged
@@ -7532,6 +7853,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &912546877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912546872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 912546874}
+  isRunning: 0
 --- !u!1 &922020842
 GameObject:
   m_ObjectHideFlags: 0
@@ -8263,6 +8599,7 @@ GameObject:
   - component: {fileID: 979495671}
   - component: {fileID: 979495670}
   - component: {fileID: 979495669}
+  - component: {fileID: 979495672}
   m_Layer: 0
   m_Name: Anim_Green (13)
   m_TagString: Untagged
@@ -8349,6 +8686,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &979495672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979495667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 979495669}
+  isRunning: 0
 --- !u!1 &994939589
 GameObject:
   m_ObjectHideFlags: 0
@@ -8361,6 +8713,7 @@ GameObject:
   - component: {fileID: 994939593}
   - component: {fileID: 994939592}
   - component: {fileID: 994939591}
+  - component: {fileID: 994939594}
   m_Layer: 0
   m_Name: Anim_Green (2)
   m_TagString: Untagged
@@ -8447,6 +8800,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &994939594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994939589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 994939591}
+  isRunning: 0
 --- !u!1 &998720808
 GameObject:
   m_ObjectHideFlags: 0
@@ -8940,131 +9308,163 @@ MonoBehaviour:
   lv: {fileID: 4900000, guid: 87ad009ff185ab6499d2f2a844fc9976, type: 3}
   fruitGreen:
   - fruit: {fileID: 87880536}
+    animFruit: {fileID: 0}
     image: {fileID: 87880537}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 810305057}
+    animFruit: {fileID: 0}
     image: {fileID: 810305058}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 1252326040}
+    animFruit: {fileID: 0}
     image: {fileID: 1252326041}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 1840746349}
+    animFruit: {fileID: 0}
     image: {fileID: 1840746350}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 477443593}
+    animFruit: {fileID: 0}
     image: {fileID: 477443594}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 447481797}
+    animFruit: {fileID: 0}
     image: {fileID: 447481798}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 621827218}
+    animFruit: {fileID: 0}
     image: {fileID: 621827219}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 901288292}
+    animFruit: {fileID: 0}
     image: {fileID: 901288293}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 615796085}
+    animFruit: {fileID: 0}
     image: {fileID: 615796086}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 702729252}
+    animFruit: {fileID: 0}
     image: {fileID: 702729253}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 484543295}
+    animFruit: {fileID: 0}
     image: {fileID: 484543296}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 238286293}
+    animFruit: {fileID: 0}
     image: {fileID: 238286294}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 438501173}
+    animFruit: {fileID: 0}
     image: {fileID: 438501174}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 979495668}
+    animFruit: {fileID: 0}
     image: {fileID: 979495669}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 1945905044}
+    animFruit: {fileID: 0}
     image: {fileID: 1945905045}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 912546873}
+    animFruit: {fileID: 0}
     image: {fileID: 912546874}
     typeFruit: 0
     startPos: {x: 0, y: 0}
   fruitOrange:
   - fruit: {fileID: 191383449}
+    animFruit: {fileID: 0}
     image: {fileID: 191383450}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 496699608}
+    animFruit: {fileID: 0}
     image: {fileID: 496699609}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 994939590}
+    animFruit: {fileID: 0}
     image: {fileID: 994939591}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 2055343379}
+    animFruit: {fileID: 0}
     image: {fileID: 2055343380}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 1785696582}
+    animFruit: {fileID: 0}
     image: {fileID: 1785696583}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 1151098263}
+    animFruit: {fileID: 0}
     image: {fileID: 1151098264}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 389731994}
+    animFruit: {fileID: 0}
     image: {fileID: 389731995}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 1713298551}
+    animFruit: {fileID: 0}
     image: {fileID: 1713298552}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 274190682}
+    animFruit: {fileID: 0}
     image: {fileID: 274190683}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 2098580485}
+    animFruit: {fileID: 0}
     image: {fileID: 2098580486}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 9321328}
+    animFruit: {fileID: 0}
     image: {fileID: 9321329}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 243206150}
+    animFruit: {fileID: 0}
     image: {fileID: 243206151}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 1086696771}
+    animFruit: {fileID: 0}
     image: {fileID: 1086696772}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 397232492}
+    animFruit: {fileID: 0}
     image: {fileID: 397232493}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 177249785}
+    animFruit: {fileID: 0}
     image: {fileID: 177249786}
     typeFruit: 1
     startPos: {x: 0, y: 0}
   - fruit: {fileID: 691861783}
+    animFruit: {fileID: 0}
     image: {fileID: 691861784}
     typeFruit: 1
     startPos: {x: 0, y: 0}
@@ -9198,6 +9598,48 @@ MonoBehaviour:
   radius: 0.5
   btnBlenderGreen: {fileID: 930726581}
   btnBlenderOrange: {fileID: 540164602}
+  sprFruitGreen:
+  - {fileID: -550362000, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: 1948253191, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: -1349155103, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: 1526842292, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: -1609837111, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: -781710580, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: -381536214, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: 2108386978, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: 1412006219, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: -483971145, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: -384484374, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: 2095668276, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: -1059779870, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: -193287519, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: -725234036, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: -796809071, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: -1341216811, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: 1218863557, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: 112923211, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  - {fileID: 614936735, guid: d9e3e9ff3dfedd248b24929e4fee203c, type: 3}
+  sprFruitOrange:
+  - {fileID: 1926740012, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: 946105504, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: 542534860, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: -266232001, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: 532424450, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: -1378791908, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: 446535524, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: -1618648925, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: 281296323, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: -758429067, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: 417439918, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: 545029486, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: 587344801, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: -454911473, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: 81608192, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: 157111980, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: -1093710745, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: 778761404, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: -2039280141, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
+  - {fileID: 698722701, guid: d951a341d5671b84494c879e6b2305fe, type: 3}
 --- !u!4 &1046581980
 Transform:
   m_ObjectHideFlags: 0
@@ -9854,6 +10296,7 @@ GameObject:
   - component: {fileID: 1086696774}
   - component: {fileID: 1086696773}
   - component: {fileID: 1086696772}
+  - component: {fileID: 1086696775}
   m_Layer: 0
   m_Name: Anim_Green (12)
   m_TagString: Untagged
@@ -9940,6 +10383,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1086696775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086696770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 1086696772}
+  isRunning: 0
 --- !u!1 &1088653673
 GameObject:
   m_ObjectHideFlags: 0
@@ -10337,6 +10795,7 @@ GameObject:
   - component: {fileID: 1151098266}
   - component: {fileID: 1151098265}
   - component: {fileID: 1151098264}
+  - component: {fileID: 1151098267}
   m_Layer: 0
   m_Name: Anim_Green (5)
   m_TagString: Untagged
@@ -10423,6 +10882,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1151098267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151098262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 1151098264}
+  isRunning: 0
 --- !u!1 &1166984308
 GameObject:
   m_ObjectHideFlags: 0
@@ -11086,6 +11560,7 @@ GameObject:
   - component: {fileID: 1252326043}
   - component: {fileID: 1252326042}
   - component: {fileID: 1252326041}
+  - component: {fileID: 1252326044}
   m_Layer: 0
   m_Name: Anim_Green (2)
   m_TagString: Untagged
@@ -11172,6 +11647,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1252326044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252326039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 1252326041}
+  isRunning: 0
 --- !u!1 &1256082296
 GameObject:
   m_ObjectHideFlags: 0
@@ -15434,6 +15924,7 @@ GameObject:
   - component: {fileID: 1713298554}
   - component: {fileID: 1713298553}
   - component: {fileID: 1713298552}
+  - component: {fileID: 1713298555}
   m_Layer: 0
   m_Name: Anim_Green (7)
   m_TagString: Untagged
@@ -15520,6 +16011,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1713298555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713298550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 1713298552}
+  isRunning: 0
 --- !u!1 &1715523839
 GameObject:
   m_ObjectHideFlags: 0
@@ -16150,6 +16656,7 @@ GameObject:
   - component: {fileID: 1785696585}
   - component: {fileID: 1785696584}
   - component: {fileID: 1785696583}
+  - component: {fileID: 1785696586}
   m_Layer: 0
   m_Name: Anim_Green (4)
   m_TagString: Untagged
@@ -16236,6 +16743,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1785696586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785696581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 1785696583}
+  isRunning: 0
 --- !u!1 &1800802585
 GameObject:
   m_ObjectHideFlags: 0
@@ -16617,6 +17139,7 @@ GameObject:
   - component: {fileID: 1840746352}
   - component: {fileID: 1840746351}
   - component: {fileID: 1840746350}
+  - component: {fileID: 1840746353}
   m_Layer: 0
   m_Name: Anim_Green (3)
   m_TagString: Untagged
@@ -16703,6 +17226,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1840746353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840746348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 1840746350}
+  isRunning: 0
 --- !u!1 &1846363853
 GameObject:
   m_ObjectHideFlags: 0
@@ -17361,6 +17899,7 @@ GameObject:
   - component: {fileID: 1945905047}
   - component: {fileID: 1945905046}
   - component: {fileID: 1945905045}
+  - component: {fileID: 1945905048}
   m_Layer: 0
   m_Name: Anim_Green (14)
   m_TagString: Untagged
@@ -17447,6 +17986,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1945905048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945905043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 1945905045}
+  isRunning: 0
 --- !u!1 &1955883410
 GameObject:
   m_ObjectHideFlags: 0
@@ -18121,6 +18675,7 @@ GameObject:
   - component: {fileID: 2055343382}
   - component: {fileID: 2055343381}
   - component: {fileID: 2055343380}
+  - component: {fileID: 2055343383}
   m_Layer: 0
   m_Name: Anim_Green (3)
   m_TagString: Untagged
@@ -18207,6 +18762,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2055343383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055343378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 2055343380}
+  isRunning: 0
 --- !u!1 &2058314742
 GameObject:
   m_ObjectHideFlags: 0
@@ -18617,6 +19187,7 @@ GameObject:
   - component: {fileID: 2098580488}
   - component: {fileID: 2098580487}
   - component: {fileID: 2098580486}
+  - component: {fileID: 2098580489}
   m_Layer: 0
   m_Name: Anim_Green (9)
   m_TagString: Untagged
@@ -18703,6 +19274,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2098580489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098580484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a72e1463d44567b60437ee4e85377f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimRunFruit
+  fruit: []
+  imgFruit: {fileID: 2098580486}
+  isRunning: 0
 --- !u!1 &2115962803
 GameObject:
   m_ObjectHideFlags: 0

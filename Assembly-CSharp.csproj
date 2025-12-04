@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Fruit.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\AnimRunFruit.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\CupPouring.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

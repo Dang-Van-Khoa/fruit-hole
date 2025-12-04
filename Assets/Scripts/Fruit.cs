@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Fruit
 {
     public Transform fruit;
+    public AnimRunFruit animFruit;
     public Image image;
     public TypeFruit typeFruit;
     [HideInInspector] public Vector2 startPos;

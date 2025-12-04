@@ -20,11 +20,24 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RectTransform fillGreen, fillOrange;
     [SerializeField] private float radius;
     [SerializeField] private Button btnBlenderGreen, btnBlenderOrange;
+    [SerializeField] private List<Sprite> sprFruitGreen, sprFruitOrange;
     
     private Tween _rotateBlenderGreen, _rotateBlenderOrange, _twBigCupGreen, _twBigCupOrange;
     private int cupFillGreen, cupFillOrange;
     private List<Vector2> posInitCupGreen;
     private Vector2 posInitBigCupGreen, posInitBigCupOrange;
+
+    private void OnValidate()
+    {
+        foreach (var f in fruitGreen)
+        {
+            f.animFruit = f.fruit.GetComponent<AnimRunFruit>();
+        }
+        foreach (var f in fruitOrange)
+        {
+            f.animFruit = f.fruit.GetComponent<AnimRunFruit>();
+        }
+    }
 
     private void Start()
     {
@@ -126,10 +139,17 @@ public class GameManager : MonoBehaviour
             while (Vector2.Distance(obj.fruit.position, p) > 0.01f)
             {
                 obj.fruit.position = Vector2.MoveTowards(obj.fruit.position, p, Time.deltaTime * 3f);
+                obj.animFruit.SetSpr(obj.typeFruit == TypeFruit.Green ? sprFruitGreen : sprFruitOrange);
+                obj.animFruit.isRunning = true;
+                if (obj.animFruit.animCo == null)
+                {
+                    obj.animFruit.animCo = StartCoroutine(PlayFruitAnim(obj));
+                }
                 yield return null;
             }
         }
-        
+        obj.animFruit.isRunning = false;
+        obj.animFruit.StopAllCoroutines();
         obj.jump?.Kill();
         obj.jump = DOTween.Sequence().Append(obj.fruit.DOJump(target, 1f, 1, 0.3f))
             .AppendCallback(() =>
@@ -162,7 +182,15 @@ public class GameManager : MonoBehaviour
                 }
             });
     }
-
+    private IEnumerator PlayFruitAnim(Fruit obj)
+    {
+        while (obj.animFruit.isRunning)
+        {
+            obj.animFruit.SetFruit(obj.animFruit.fruit[obj.animFruit.index]);
+            obj.animFruit.index = (obj.animFruit.index + 1) % obj.animFruit.fruit.Count;
+            yield return new WaitForSeconds(0.025f);   // speed
+        }
+    }
     private void Poring(TypeFruit typeFruit)
     {
         if (typeFruit != TypeFruit.Green)
