@@ -5,19 +5,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private TextAsset lv;
+    
     [Button]
     private void ReadLevelData()
     {
-        TextAsset levelData = Resources.Load<TextAsset>("levelsencypted/levelsjson/Level1"); // bỏ .bytes
-        if (levelData == null)
-        {
-            Debug.LogError("Không tìm thấy file trong Resources");
-            return;
-        }
+        byte[] bytes = lv.bytes;
 
-        var data = levelData.bytes.ToString();
+        Debug.Log("Length: " + bytes.Length);
 
-        // In 20 byte đầu tiên
-        Debug.Log($"data level: {data}");
+        // In 20 byte đầu
+        string hex = BitConverter.ToString(bytes, 0, Math.Min(bytes.Length, 64));
+        Debug.Log("HEX: " + hex);
     }
 }
