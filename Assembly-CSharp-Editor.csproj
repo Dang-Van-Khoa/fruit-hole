@@ -438,6 +438,12 @@
     <Reference Include="Sirenix.Reflection.Editor">
       <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\Plugins\Sirenix\Assemblies\Sirenix.Reflection.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Google.VersionHandler">
+      <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\MobileDependencyResolver\Editor\Google.VersionHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.IOSResolver">
+      <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\MobileDependencyResolver\Editor\1.2.185\Google.IOSResolver.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
@@ -453,6 +459,9 @@
     <Reference Include="Sirenix.Serialization">
       <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
     </Reference>
+    <Reference Include="Google.VersionHandlerImpl">
+      <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\MobileDependencyResolver\Editor\1.2.185\Google.VersionHandlerImpl.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Library\PackageCache\com.unity.collab-proxy@3351acaba9c9\Lib\Editor\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
     </Reference>
@@ -461,6 +470,12 @@
     </Reference>
     <Reference Include="Sirenix.OdinInspector.Editor">
       <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.JarResolver">
+      <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\MobileDependencyResolver\Editor\1.2.185\Google.JarResolver.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
       <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Library\PackageCache\com.unity.collab-proxy@3351acaba9c9\Lib\Editor\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
@@ -482,6 +497,9 @@
     </Reference>
     <Reference Include="Sirenix.Utilities">
       <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Library\PackageCache\com.unity.visualscripting@b4d700247d4b\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
@@ -506,24 +524,6 @@
     </Reference>
     <Reference Include="Google.PackageManagerResolver">
       <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\MobileDependencyResolver\Editor\1.2.185\Google.PackageManagerResolver.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.IOSResolver">
-      <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\MobileDependencyResolver\Editor\1.2.185\Google.IOSResolver.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.VersionHandlerImpl">
-      <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\MobileDependencyResolver\Editor\1.2.185\Google.VersionHandlerImpl.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.VersionHandler">
-      <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\MobileDependencyResolver\Editor\Google.VersionHandler.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.JarResolver">
-      <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\MobileDependencyResolver\Editor\1.2.185\Google.JarResolver.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTweenEditor">
-      <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween">
-      <HintPath>C:\Users\dangv\Documents\UnityProjects\fruit-hole\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.15f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
