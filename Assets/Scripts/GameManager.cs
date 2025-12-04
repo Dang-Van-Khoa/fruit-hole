@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private TextAsset lv;
     [SerializeField] private List<Fruit> fruitGreen, fruitOrange;
-    [SerializeField] private List<Transform> points, cupGreen, cupOrange, cupPouringGreen, cupPouringOrange;
+    [SerializeField] private List<Transform> points, cupGreen, cupOrange;
+    [SerializeField] private List<CupPouring> cupPouringGreen, cupPouringOrange;
     [SerializeField] private Transform holeGreen, holeOrange, blenderGreen, blenderOrange, parentFruitGreen,
         parentFruitOrange, bigCupGreen, bigCupOrange;
 
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     private int cupFillGreen, cupFillOrange;
     private List<Vector2> posInitCupGreen;
     private Vector2 posInitBigCupGreen, posInitBigCupOrange;
+    private bool isRunning;
 
     private void OnValidate()
     {
@@ -70,6 +72,7 @@ public class GameManager : MonoBehaviour
         cupFillGreen = 16;
         cupFillOrange = 16;
         cupGreen.ForEach(c => c.gameObject.SetActive(false));
+        StopAllCoroutines();
         fruitGreen.ForEach(f => f.Reset());
         fruitOrange.ForEach(f => f.Reset());
     }
@@ -87,10 +90,14 @@ public class GameManager : MonoBehaviour
     
     private void RunFruitGreen()
     {
+        if (isRunning) return;
+        isRunning = true;
         FindAndMove(fruitGreen, holeGreen.position);
     }
     private void RunFruitOrange()
     {
+        if (isRunning) return;
+        isRunning = true;
         FindAndMove(fruitOrange, holeOrange.position);
     }
     private void FindAndMove(List<Fruit> fruit, Vector2 holePos)
@@ -150,6 +157,7 @@ public class GameManager : MonoBehaviour
         }
         obj.animFruit.isRunning = false;
         obj.animFruit.StopAllCoroutines();
+        obj.animFruit.animCo = null;
         obj.jump?.Kill();
         obj.jump = DOTween.Sequence().Append(obj.fruit.DOJump(target, 1f, 1, 0.3f))
             .AppendCallback(() =>
@@ -171,6 +179,7 @@ public class GameManager : MonoBehaviour
                         _twBigCupOrange = bigCupOrange.DOMove(new Vector2(10, 0), 2f);
                         break;
                 }
+                isRunning = false;
             })
             .AppendInterval(1f).AppendCallback(() =>
             {
@@ -199,10 +208,10 @@ public class GameManager : MonoBehaviour
             if (cupFillOrange == 10)
             {
                 fillOrange.gameObject.SetActive(true);
-                fillOrange.DOAnchorPosY(0, 0.6f).From(new Vector2(0, -40f));
+                fillOrange.DOAnchorPosY(0, 1f).From(new Vector2(0, -40f));
             }
             if (cupPouringOrange.Count(c => !c.gameObject.activeSelf) > 0)
-                cupPouringOrange.First(c => !c.gameObject.activeSelf).gameObject.SetActive(true);
+                cupPouringOrange.First(c => !c.gameObject.activeSelf).SetAnim(true);
             
             if (cupFillOrange <= 0)
             {
@@ -216,15 +225,15 @@ public class GameManager : MonoBehaviour
                         var i1 = i;
                         var iTarget = i >= cupPouringGreen.Count ? Random.Range(0, cupPouringGreen.Count) : i;
                         var target = cupPouringGreen[iTarget];
-                        cupGreenActivate[i1].DOMove(target.position, 0.5f)
+                        cupGreenActivate[i1].DOMove(target.transform.position, 0.5f)
                             .OnComplete(() =>
                             {
-                                cupPouringGreen[iTarget].gameObject.SetActive(true);
+                                cupPouringGreen[iTarget].SetAnim(false);
                                 cupGreenActivate[i1].gameObject.SetActive(false);
                                 if (i1 == 6)
                                 {
                                     fillGreen.gameObject.SetActive(true);
-                                    fillGreen.DOAnchorPosY(0, 0.6f).From(new Vector2(0, -40f));
+                                    fillGreen.DOAnchorPosY(0, 1f).From(new Vector2(0, -40f));
                                 }
                             });
                     }
@@ -244,9 +253,9 @@ public class GameManager : MonoBehaviour
                 if (cupFillGreen == 10)
                 {
                     fillGreen.gameObject.SetActive(true);
-                    fillGreen.DOAnchorPosY(0, 0.6f).From(new Vector2(0, -40f));
+                    fillGreen.DOAnchorPosY(0, 1f).From(new Vector2(0, -40f));
                 }
-                cupPouringGreen.First(c => !c.gameObject.activeSelf).gameObject.SetActive(true);
+                cupPouringGreen.First(c => !c.gameObject.activeSelf).SetAnim(true);
             }
             
         }

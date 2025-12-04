@@ -16,6 +16,8 @@ public class Fruit
     
     public void Reset()
     {
+        jump?.Kill();
+        move = null;
         fruit.position = startPos;
         fruit.gameObject.SetActive(true);
         Color c = image.color;
