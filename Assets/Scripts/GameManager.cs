@@ -29,6 +29,202 @@ public class GameManager : MonoBehaviour
     private Vector2 posInitBigCupGreen, posInitBigCupOrange;
     private bool isRunning;
 
+    [Button]
+    private void FindPathVector()
+    {
+        Vector2[,] grid = new Vector2[5, 8];
+
+        HashSet<Vector2> obstacles = new HashSet<Vector2>()
+        {
+            new Vector2(1,1),
+            new Vector2(2,1),
+            new Vector2(3,1),
+            new Vector2(4,2),
+        };
+
+        var path = FindPathBFSVector(grid, fruitGreen.First().fruit.position, holeGreen.position, obstacles);
+        Debug.Log($"path found: {string.Join(",", path)}");
+    }
+    public List<Vector2> FindPathBFSVector(Vector2[,] grid, Vector2 start, Vector2 target,
+        HashSet<Vector2> obstacles)
+    {
+
+        Queue<Vector2> queue = new Queue<Vector2>();
+        Dictionary<Vector2, Vector2> cameFrom = new Dictionary<Vector2, Vector2>();
+        HashSet<Vector2> visited = new HashSet<Vector2>();
+        float step = Vector2.Distance(fruitGreen.First().fruit.position, fruitGreen[1].fruit.position); // khoảng cách giữa các pointPos
+        var pointPos = points.Select(p => (Vector2)p.position).ToList();
+        var tolerance = 0.05f;
+        queue.Enqueue(start);
+        visited.Add(start);
+
+        while (queue.Count > 0)
+        {
+            Vector2 current = queue.Dequeue();
+
+            if (current == target)
+                return BuildPath(cameFrom, start, target);
+
+            foreach (var next in GetNeighbors(current, pointPos, step, tolerance))
+            {
+                
+                // 3. Check visited
+                if (visited.Contains(next))
+                    continue;
+
+                queue.Enqueue(next);
+                visited.Add(next);
+                cameFrom[next] = current;
+            }
+        }
+
+        // ❗ Không tới target → tìm ô visited gần target nhất
+        Vector2 best = start;
+        float bestDist = float.MaxValue;
+
+        foreach (var v in visited)
+        {
+            float dist = Vector2.Distance(v, target);
+            if (dist < bestDist)
+            {
+                bestDist = dist;
+                best = v;
+            }
+        }
+
+        // Build path đến ô gần nhất
+        return BuildPath(cameFrom, start, best);
+    }
+
+    [Button]
+    private void FindPathInt()
+    {
+        int[,] grid = new int[,] {
+            {0,0,0,0,1,0,0,0},
+            {0,1,1,1,1,0,0,0},
+            {0,0,0,0,1,0,0,0},
+            {0,0,1,1,1,0,0,0},
+            {0,0,0,0,1,0,0,0},
+        };
+        Vector2Int start = new Vector2Int(0, 0);
+        Vector2Int target = new Vector2Int(5, 2);
+
+        foreach (var p in FindPathBFSInt(grid, start, target))
+        {
+            Debug.Log($"path found: {p}");
+        }
+    }
+    public List<Vector2Int> FindPathBFSInt(int[,] grid, Vector2Int start, Vector2Int target)
+    {
+        int rows = grid.GetLength(0);
+        int cols = grid.GetLength(1);
+
+        Queue<Vector2Int> queue = new Queue<Vector2Int>();
+        Dictionary<Vector2Int, Vector2Int> cameFrom = new Dictionary<Vector2Int, Vector2Int>();
+        HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
+
+        queue.Enqueue(start);
+        visited.Add(start);
+
+        Vector2Int[] dirs = {
+            new Vector2Int(1, 0),
+            new Vector2Int(-1, 0),
+            new Vector2Int(0, 1),
+            new Vector2Int(0, -1)
+        };
+
+        while (queue.Count > 0)
+        {
+            Vector2Int current = queue.Dequeue();
+
+            // Nếu đã tới target → truy vết đường đi
+            if (current == target)
+                return BuildPath(cameFrom, start, target);
+
+            // Duyệt 4 hướng
+            foreach (var d in dirs)
+            {
+                Vector2Int next = current + d;
+                
+                // 1. Check nằm trong biên
+                if (next.x < 0 || next.x >= cols || next.y < 0 || next.y >= rows)
+                    continue;
+
+                // 2. Check có phải chướng ngại vật
+                if (grid[next.y, next.x] == 1)
+                    continue;
+
+                // 3. Check đã đi rồi
+                if (visited.Contains(next))
+                    continue;
+
+                // Hợp lệ → đưa vào queue
+                queue.Enqueue(next);
+                visited.Add(next);
+                cameFrom[next] = current;
+                
+            }
+        }
+
+        // ❗ Không tới target → tìm ô visited gần target nhất
+        Vector2Int best = start;
+        float bestDist = float.MaxValue;
+
+        foreach (var v in visited)
+        {
+            float dist = Vector2.Distance(v, target);
+            if (dist < bestDist)
+            {
+                bestDist = dist;
+                best = v;
+            }
+        }
+
+        // Build path đến ô gần nhất
+        return BuildPath(cameFrom, start, best);
+    }
+
+    private List<Vector2Int> BuildPath(Dictionary<Vector2Int, Vector2Int> cameFrom,
+        Vector2Int start, Vector2Int target)
+    {
+        List<Vector2Int> path = new List<Vector2Int>();
+        Vector2Int curr = target;
+        foreach (var c in cameFrom)
+        {
+            //Debug.Log($"path found: {c.Value}");
+        }
+        while (curr != start)
+        {
+            path.Add(curr);
+            curr = cameFrom[curr];
+            //Debug.Log($"path found: {curr}");
+        }
+
+        path.Add(start);
+        path.Reverse();
+        return path;
+    }
+    private List<Vector2> BuildPath(Dictionary<Vector2, Vector2> cameFrom,
+        Vector2 start, Vector2 target)
+    {
+        List<Vector2> path = new List<Vector2>();
+        Vector2 curr = target;
+        foreach (var c in cameFrom)
+        {
+            //Debug.Log($"path found: {c.Value}");
+        }
+        while (curr != start)
+        {
+            path.Add(curr);
+            curr = cameFrom[curr];
+            //Debug.Log($"path found: {curr}");
+        }
+
+        path.Add(start);
+        path.Reverse();
+        return path;
+    }
+
     private void OnValidate()
     {
         foreach (var f in fruitGreen)
