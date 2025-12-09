@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -97,7 +99,63 @@ public class GameManager : MonoBehaviour
     }
 
     [Button]
-    private void FindPathInt()
+    private void AStar()
+    {
+        var s = new Stopwatch();
+        s.Start();
+        var pointPos = points.Select(p => (Vector2)p.position).ToList();
+        var gridVector2 = new List<CellGrid>();
+        foreach (var p in pointPos)
+        {
+            gridVector2.Add(new CellGrid(p));
+        }
+
+        int width = 8;
+        int height = 8;
+
+        
+        var startV2 =  fruitGreen.First().fruit.position;
+        var targetV2 = holeGreen.position;
+        float step = Vector2.Distance(fruitGreen.First().fruit.position, fruitGreen[1].fruit.position);
+        var path = AStarPathFinding.FindPath(gridVector2, startV2, targetV2, width, height, step);
+        s.Stop();
+        if (path != null)
+        {
+            StartCoroutine(MoveAlongPath(fruitGreen.First(), path.Select(p => p.pos).ToList(), targetV2));
+            Debug.Log($"path found: {s.Elapsed.TotalMilliseconds}-{string.Join(",", path.Select(p => p.pos))}");
+        }
+        else
+        {
+            Debug.Log("Không có đường đi");
+        }
+    }
+
+    [Button]
+    private void FindPathAVsBfs()
+    {
+        // ✅ warm up
+        FindPathIntBFS();
+        FindPathAStar();
+
+        const int loop = 100;
+        var sw = Stopwatch.StartNew();
+
+        for (int i = 0; i < loop; i++)
+            FindPathIntBFS();
+
+        sw.Stop();
+        Debug.Log($"BFS avg: {sw.Elapsed.TotalMilliseconds / loop} ms");
+
+        sw.Restart();
+
+        for (int i = 0; i < loop; i++)
+            FindPathAStar();
+
+        sw.Stop();
+        Debug.Log($"A* avg: {sw.Elapsed.TotalMilliseconds / loop} ms");
+    }
+
+    private void FindPathAStar()
     {
         int[,] grid = new int[,] {
             {0,0,0,0,1,0,0,0},
@@ -106,13 +164,27 @@ public class GameManager : MonoBehaviour
             {0,0,1,1,1,0,0,0},
             {0,0,0,0,1,0,0,0},
         };
-        Vector2Int start = new Vector2Int(0, 0);
-        Vector2Int target = new Vector2Int(5, 2);
+        Vector2Int start = new(2, 0);
+        Vector2Int target = new(3, 2);
 
-        foreach (var p in FindPathBFSInt(grid, start, target))
-        {
-            Debug.Log($"path found: {p}");
-        }
+        var path = AStarPathFinding.FindPath(grid, start, target);
+        //Debug.Log($"path found: {string.Join(",", path)}");
+    }
+    [Button]
+    private void FindPathIntBFS()
+    {
+        int[,] grid = new int[,] {
+            {0,0,0,0,1,0,0,0},
+            {0,1,1,1,1,0,0,0},
+            {0,0,0,0,1,0,0,0},
+            {0,0,1,1,1,0,0,0},
+            {0,0,0,0,1,0,0,0},
+        };
+        Vector2Int start = new(2, 0);
+        Vector2Int target = new(3, 2);
+
+        var path = FindPathBFSInt(grid, start, target);
+        //Debug.Log($"path found: {string.Join(",", path)}");
     }
     public List<Vector2Int> FindPathBFSInt(int[,] grid, Vector2Int start, Vector2Int target)
     {

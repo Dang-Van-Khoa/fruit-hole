@@ -648,7 +648,8 @@ MonoBehaviour:
   rtCup: {fileID: 42810164}
   imgCup: {fileID: 42810165}
   rotate: {x: 0, y: 0, z: 60}
-  posInit: {x: 135, y: -49}
+  posInit: {x: 68, y: -10}
+  isDoFade: 1
 --- !u!1 &54714848
 GameObject:
   m_ObjectHideFlags: 0
@@ -1966,7 +1967,8 @@ MonoBehaviour:
   rtCup: {fileID: 160818488}
   imgCup: {fileID: 160818490}
   rotate: {x: 0, y: 0, z: 60}
-  posInit: {x: 168.09, y: -42.11}
+  posInit: {x: 101.09, y: -3.1100006}
+  isDoFade: 1
 --- !u!114 &160818490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2600,7 +2602,8 @@ MonoBehaviour:
   rtCup: {fileID: 204667286}
   imgCup: {fileID: 204667287}
   rotate: {x: 0, y: 0, z: 60}
-  posInit: {x: 169, y: -6}
+  posInit: {x: 102, y: 32.999992}
+  isDoFade: 1
 --- !u!1 &216417237
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,7 +3993,8 @@ MonoBehaviour:
   rtCup: {fileID: 412227407}
   imgCup: {fileID: 412227409}
   rotate: {x: 0, y: 0, z: -60}
-  posInit: {x: -1, y: 10}
+  posInit: {x: -68, y: 48.999985}
+  isDoFade: 1
 --- !u!114 &412227409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4165,7 +4169,8 @@ MonoBehaviour:
   rtCup: {fileID: 416743090}
   imgCup: {fileID: 416743091}
   rotate: {x: 0, y: 0, z: -60}
-  posInit: {x: -1, y: 10}
+  posInit: {x: -68, y: 49}
+  isDoFade: 1
 --- !u!1 &438501172
 GameObject:
   m_ObjectHideFlags: 0
@@ -7356,7 +7361,8 @@ MonoBehaviour:
   rtCup: {fileID: 851846594}
   imgCup: {fileID: 851846596}
   rotate: {x: 0, y: 0, z: 60}
-  posInit: {x: 146, y: 2}
+  posInit: {x: 79, y: 40.999947}
+  isDoFade: 1
 --- !u!114 &851846596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9245,7 +9251,8 @@ MonoBehaviour:
   rtCup: {fileID: 1043285312}
   imgCup: {fileID: 1043285314}
   rotate: {x: 0, y: 0, z: -60}
-  posInit: {x: -28, y: -3}
+  posInit: {x: -95, y: 35.999985}
+  isDoFade: 1
 --- !u!114 &1043285314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10164,7 +10171,8 @@ MonoBehaviour:
   rtCup: {fileID: 1063786891}
   imgCup: {fileID: 1063786892}
   rotate: {x: 0, y: 0, z: -60}
-  posInit: {x: -2, y: -50}
+  posInit: {x: -69, y: -11}
+  isDoFade: 1
 --- !u!1 &1067617897
 GameObject:
   m_ObjectHideFlags: 0
@@ -10740,7 +10748,8 @@ MonoBehaviour:
   rtCup: {fileID: 1098996430}
   imgCup: {fileID: 1098996431}
   rotate: {x: 0, y: 0, z: -60}
-  posInit: {x: -34, y: -42.11}
+  posInit: {x: -101, y: -3.1100006}
+  isDoFade: 1
 --- !u!1 &1112957097
 GameObject:
   m_ObjectHideFlags: 0
@@ -13058,7 +13067,8 @@ MonoBehaviour:
   rtCup: {fileID: 1385071274}
   imgCup: {fileID: 1385071276}
   rotate: {x: 0, y: 0, z: -60}
-  posInit: {x: -34, y: -42.11}
+  posInit: {x: -101, y: -3.1100006}
+  isDoFade: 1
 --- !u!114 &1385071276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13406,7 +13416,8 @@ MonoBehaviour:
   rtCup: {fileID: 1405782101}
   imgCup: {fileID: 1405782102}
   rotate: {x: 0, y: 0, z: -60}
-  posInit: {x: -48, y: -3}
+  posInit: {x: -115, y: 35.999947}
+  isDoFade: 1
 --- !u!1 &1416011023
 GameObject:
   m_ObjectHideFlags: 0
@@ -13596,7 +13607,8 @@ MonoBehaviour:
   rtCup: {fileID: 1418935742}
   imgCup: {fileID: 1418935743}
   rotate: {x: 0, y: 0, z: 60}
-  posInit: {x: 168.09, y: -42.11}
+  posInit: {x: 101.09, y: -3.1100006}
+  isDoFade: 1
 --- !u!1 &1419886707
 GameObject:
   m_ObjectHideFlags: 0
@@ -15209,7 +15221,8 @@ MonoBehaviour:
   rtCup: {fileID: 1634008584}
   imgCup: {fileID: 1634008586}
   rotate: {x: 0, y: 0, z: 60}
-  posInit: {x: 135, y: -49}
+  posInit: {x: 68, y: -10.000042}
+  isDoFade: 1
 --- !u!114 &1634008586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16428,7 +16441,8 @@ MonoBehaviour:
   rtCup: {fileID: 1737301892}
   imgCup: {fileID: 1737301893}
   rotate: {x: 0, y: 0, z: 60}
-  posInit: {x: 146, y: 2}
+  posInit: {x: 79, y: 40.99991}
+  isDoFade: 1
 --- !u!1 &1740180673
 GameObject:
   m_ObjectHideFlags: 0
@@ -18099,7 +18113,8 @@ MonoBehaviour:
   rtCup: {fileID: 1955883411}
   imgCup: {fileID: 1955883413}
   rotate: {x: 0, y: 0, z: 60}
-  posInit: {x: 169, y: -6}
+  posInit: {x: 102, y: 33.00003}
+  isDoFade: 1
 --- !u!114 &1955883413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19563,7 +19578,8 @@ MonoBehaviour:
   rtCup: {fileID: 2137694878}
   imgCup: {fileID: 2137694880}
   rotate: {x: 0, y: 0, z: -60}
-  posInit: {x: -2, y: -50}
+  posInit: {x: -69, y: -11.000046}
+  isDoFade: 1
 --- !u!114 &2137694880
 MonoBehaviour:
   m_ObjectHideFlags: 0
