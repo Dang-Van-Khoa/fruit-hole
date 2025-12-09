@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AStarPathFinding
@@ -11,314 +11,262 @@ public class AStarPathFinding
         Vector2Int.left,
         Vector2Int.right
     };
-
-    // ----------------- PriorityQueue (min-heap) -----------------
-    public class PriorityQueue<T>
+public static List<CellGrid> FindPath(
+    List<CellGrid> gridVector2,
+    Vector2 start,
+    Vector2 target,
+    int width,
+    int height, float cellSize)
+{
+    // ✅ Map Vector2Int -> CellGrid
+    Dictionary<Vector2Int, CellGrid> cellMap = new();
+    for (int i = 0; i < gridVector2.Count; i++)
     {
-        List<T> data;
-        IComparer<T> comparer;
+        int x = i % width;
+        int y = i / width;
+        if (y >= height)
+            break;
+        Vector2Int key = new Vector2Int(x, y);
+        gridVector2[i].posInt = key;
+        cellMap[key] = gridVector2[i];
+    }
 
-        public PriorityQueue(IComparer<T> comparer)
+    Vector2 origin = gridVector2[0].pos; // cell (0,0)
+
+    Vector2Int startI = WorldToGrid(start, origin, cellSize, width, height);
+    Vector2Int targetI = WorldToGrid(target, origin, cellSize, width, height);
+    //Vector2Int startI = gridVector2.OrderBy(g => Vector2.Distance(start, g.pos)).First().posInt;
+
+    //Vector2Int targetI = gridVector2.OrderBy(g => Vector2.Distance(target, g.pos)).First().posInt;
+
+    Dictionary<Vector2Int, Node> allNodes = new();
+    List<Node> openSet = new();
+    HashSet<Vector2Int> closedSet = new();
+
+    Node startNode = new(startI)
+    {
+        gCost = 0,
+        hCost = Heuristic(startI, targetI)
+    };
+
+    openSet.Add(startNode);
+    allNodes[startI] = startNode;
+
+    Node bestNode = startNode;
+
+    while (openSet.Count > 0)
+    {
+        // lấy node có fCost thấp nhất
+        Node current = openSet[0];
+        for (int i = 1; i < openSet.Count; i++)
         {
-            this.data = new List<T>();
-            this.comparer = comparer ?? Comparer<T>.Default;
-        }
-
-        public int Count => data.Count;
-
-        public void Enqueue(T item)
-        {
-            data.Add(item);
-            int ci = data.Count - 1;
-            while (ci > 0)
+            if (openSet[i].fCost < current.fCost ||
+               (openSet[i].fCost == current.fCost &&
+                openSet[i].hCost < current.hCost))
             {
-                int pi = (ci - 1) / 2;
-                if (comparer.Compare(data[ci], data[pi]) >= 0) break;
-                T tmp = data[ci]; data[ci] = data[pi]; data[pi] = tmp;
-                ci = pi;
+                current = openSet[i];
             }
         }
 
-        public T Dequeue()
+        openSet.Remove(current);
+        closedSet.Add(current.pos);
+
+        if (current.hCost < bestNode.hCost)
+            bestNode = current;
+
+        if (current.pos == targetI)
+            return BuildPath(current, cellMap);
+
+        foreach (var dir in directions)
         {
-            if (data.Count == 0) throw new InvalidOperationException("Queue empty");
-            int li = data.Count - 1;
-            T frontItem = data[0];
-            data[0] = data[li];
-            data.RemoveAt(li);
-            --li;
-            int pi = 0;
-            while (true)
+            Vector2Int next = current.pos + dir;
+
+            if (next.x < 0 || next.x >= width ||
+                next.y < 0 || next.y >= height)
+                continue;
+
+            if (!cellMap.TryGetValue(next, out var cell))
+                continue;
+
+            if (cell.isObstacle)
+                continue;
+
+            if (closedSet.Contains(next))
+                continue;
+
+            int newG = current.gCost + 1;
+
+            if (!allNodes.TryGetValue(next, out Node neighbor))
             {
-                int ci = pi * 2 + 1;
-                if (ci > li) break;
-                int rc = ci + 1;
-                if (rc <= li && comparer.Compare(data[rc], data[ci]) < 0) ci = rc;
-                if (comparer.Compare(data[pi], data[ci]) <= 0) break;
-                T tmp = data[pi]; data[pi] = data[ci]; data[ci] = tmp;
-                pi = ci;
+                neighbor = new Node(next);
+                allNodes[next] = neighbor;
             }
-            return frontItem;
-        }
+            else if (newG >= neighbor.gCost && openSet.Contains(neighbor))
+            {
+                continue;
+            }
 
-        public T Peek()
-        {
-            if (data.Count == 0) throw new InvalidOperationException("Queue empty");
-            return data[0];
+            neighbor.gCost = newG;
+            neighbor.hCost = Heuristic(next, targetI);
+            neighbor.parent = current;
+
+            if (!openSet.Contains(neighbor))
+                openSet.Add(neighbor);
         }
     }
 
-    // ----------------- Node & Comparer -----------------
-    public class Node
+    // ❌ Không tới được target → trả đường gần nhất
+    return BuildPath(bestNode, cellMap);
+}
+static Vector2Int WorldToGrid(
+    Vector2 worldPos,
+    Vector2 origin,
+    float cellSize,
+    int width,
+    int height)
+{
+    int x = Mathf.RoundToInt(Mathf.Abs(worldPos.x - origin.x) / cellSize);
+    int y = Mathf.RoundToInt(Mathf.Abs(worldPos.y - origin.y) / cellSize);
+
+    x = Mathf.Clamp(x, 0, width - 1);
+    y = Mathf.Clamp(y, 0, height - 1);
+
+    return new Vector2Int(x, y);
+}
+
+static List<CellGrid> BuildPath(
+    Node node,
+    Dictionary<Vector2Int, CellGrid> cellMap)
+{
+    List<CellGrid> path = new();
+
+    while (node != null)
     {
-        public Vector2Int pos;
-        public int gCost = int.MaxValue; // init large
-        public int hCost;
-        public int fCost => gCost + hCost;
-        public Node parent;
-
-        public Node(Vector2Int pos)
-        {
-            this.pos = pos;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj is Node n) return pos == n.pos;
-            if (obj is Vector2Int v) return pos == v;
-            return false;
-        }
-
-        public override int GetHashCode()
-        {
-            return pos.x * 73856093 ^ pos.y * 19349663;
-        }
+        path.Add(cellMap[node.pos]);
+        node = node.parent;
     }
 
-    // Compare nodes by fCost then hCost (min-heap)
-    class NodeComparer : IComparer<Node>
-    {
-        public int Compare(Node a, Node b)
-        {
-            int cmp = a.fCost.CompareTo(b.fCost);
-            if (cmp != 0) return cmp;
-            return a.hCost.CompareTo(b.hCost);
-        }
-    }
+    path.Reverse();
+    return path;
+}
 
-    // ----------------- Helper functions -----------------
-    static int Heuristic(Vector2Int a, Vector2Int b)
-    {
-        return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
-    }
-
-    // ----------------- FindPath for int[,] grid -----------------
     public static List<Vector2Int> FindPath(int[,] grid, Vector2Int start, Vector2Int target)
+{
+    int width = grid.GetLength(1);
+    int height = grid.GetLength(0);
+
+    Dictionary<Vector2Int, Node> allNodes = new();
+    List<Node> openSet = new();
+    HashSet<Vector2Int> closedSet = new();
+
+    Node startNode = new Node(start)
     {
-        int width = grid.GetLength(1);
-        int height = grid.GetLength(0);
+        gCost = 0,
+        hCost = Heuristic(start, target)
+    };
 
-        Dictionary<Vector2Int, Node> allNodes = new();
-        Queue<Node> openHeap = new Queue<Node>();
-        HashSet<Vector2Int> closedSet = new HashSet<Vector2Int>();
-        HashSet<Vector2Int> openSet = new HashSet<Vector2Int>(); // membership set
+    openSet.Add(startNode);
+    allNodes[start] = startNode;
 
-        Node startNode = new Node(start)
+    // ⭐ Node gần target nhất từng đạt được
+    Node bestNode = startNode;
+
+    while (openSet.Count > 0)
+    {
+        Node current = openSet[0];
+        for (int i = 1; i < openSet.Count; i++)
         {
-            gCost = 0,
-            hCost = Heuristic(start, target)
-        };
-        allNodes[start] = startNode;
-        openHeap.Enqueue(startNode);
-        openSet.Add(start);
-
-        Node bestNode = startNode;
-
-        while (openHeap.Count > 0)
-        {
-            Node current = openHeap.Dequeue();
-
-            // if this node was already closed (we may have enqueued duplicates), skip
-            if (closedSet.Contains(current.pos))
-                continue;
-
-            openSet.Remove(current.pos);
-            closedSet.Add(current.pos);
-
-            if (current.hCost < bestNode.hCost)
-                bestNode = current;
-
-            if (current.pos == target)
-                return BuildPath(current);
-
-            foreach (var dir in directions)
+            if (openSet[i].fCost < current.fCost ||
+               (openSet[i].fCost == current.fCost && openSet[i].hCost < current.hCost))
             {
-                Vector2Int nextPos = current.pos + dir;
-
-                if (!IsValid(nextPos, grid, width, height))
-                    continue;
-
-                if (closedSet.Contains(nextPos))
-                    continue;
-
-                int newG = current.gCost + 1;
-
-                if (!allNodes.TryGetValue(nextPos, out Node neighbor))
-                {
-                    neighbor = new Node(nextPos);
-                    allNodes[nextPos] = neighbor;
-                }
-
-                // if found better path to neighbor
-                if (newG < neighbor.gCost)
-                {
-                    neighbor.gCost = newG;
-                    neighbor.hCost = Heuristic(nextPos, target);
-                    neighbor.parent = current;
-
-                    // enqueue updated node (we allow duplicates in heap)
-                    openHeap.Enqueue(neighbor);
-                    openSet.Add(nextPos);
-                }
+                current = openSet[i];
             }
         }
 
-        // couldn't reach target — return path to bestNode
-        return BuildPath(bestNode);
-    }
+        openSet.Remove(current);
+        closedSet.Add(current.pos);
 
-    // ----------------- FindPath for List<CellGrid> variant -----------------
-    public static List<CellGrid> FindPath(
-        List<CellGrid> gridVector2,
-        Vector2 start,
-        Vector2 target,
-        int width,
-        int height, float cellSize)
-    {
-        // map
-        Dictionary<Vector2Int, CellGrid> cellMap = new();
-        for (int i = 0; i < gridVector2.Count; i++)
+        // ✅ Cập nhật node gần target nhất
+        if (current.hCost < bestNode.hCost)
+            bestNode = current;
+
+        // 🎯 Đã tới mục tiêu
+        if (current.pos == target)
+            return BuildPath(current);
+
+        foreach (var dir in directions)
         {
-            int x = i % width;
-            int y = i / width;
-            if (y >= height) break;
-            Vector2Int key = new Vector2Int(x, y);
-            gridVector2[i].posInt = key;
-            cellMap[key] = gridVector2[i];
-        }
+            Vector2Int nextPos = current.pos + dir;
 
-        Vector2 origin = gridVector2[0].pos;
-        Vector2Int startI = WorldToGrid(start, origin, cellSize, width, height);
-        Vector2Int targetI = WorldToGrid(target, origin, cellSize, width, height);
-
-        Dictionary<Vector2Int, Node> allNodes = new();
-        Queue<Node> openHeap = new Queue<Node>();
-        HashSet<Vector2Int> closedSet = new HashSet<Vector2Int>();
-        HashSet<Vector2Int> openSet = new HashSet<Vector2Int>();
-
-        Node startNode = new Node(startI)
-        {
-            gCost = 0,
-            hCost = Heuristic(startI, targetI)
-        };
-        allNodes[startI] = startNode;
-        openHeap.Enqueue(startNode);
-        openSet.Add(startI);
-
-        Node bestNode = startNode;
-
-        while (openHeap.Count > 0)
-        {
-            Node current = openHeap.Dequeue();
-
-            if (closedSet.Contains(current.pos))
+            if (!IsValid(nextPos, grid, width, height))
                 continue;
 
-            openSet.Remove(current.pos);
-            closedSet.Add(current.pos);
+            if (closedSet.Contains(nextPos))
+                continue;
 
-            if (current.hCost < bestNode.hCost)
-                bestNode = current;
+            int newG = current.gCost + 1;
 
-            if (current.pos == targetI)
-                return BuildPathCells(current, cellMap);
-
-            foreach (var dir in directions)
+            if (!allNodes.TryGetValue(nextPos, out Node neighbor))
             {
-                Vector2Int next = current.pos + dir;
-
-                if (next.x < 0 || next.x >= width || next.y < 0 || next.y >= height)
-                    continue;
-
-                if (!cellMap.TryGetValue(next, out var cell))
-                    continue;
-
-                if (cell.isObstacle) continue;
-
-                if (closedSet.Contains(next)) continue;
-
-                int newG = current.gCost + 1;
-
-                if (!allNodes.TryGetValue(next, out Node neighbor))
-                {
-                    neighbor = new Node(next);
-                    allNodes[next] = neighbor;
-                }
-
-                if (newG < neighbor.gCost)
-                {
-                    neighbor.gCost = newG;
-                    neighbor.hCost = Heuristic(next, targetI);
-                    neighbor.parent = current;
-
-                    openHeap.Enqueue(neighbor);
-                    openSet.Add(next);
-                }
+                neighbor = new Node(nextPos);
+                allNodes[nextPos] = neighbor;
             }
-        }
+            else if (newG >= neighbor.gCost && openSet.Contains(neighbor))
+            {
+                continue;
+            }
 
-        return BuildPathCells(bestNode, cellMap);
+            neighbor.gCost = newG;
+            neighbor.hCost = Heuristic(nextPos, target);
+            neighbor.parent = current;
+
+            if (!openSet.Contains(neighbor))
+                openSet.Add(neighbor);
+        }
     }
 
-    // ----------------- Utilities -----------------
+    // 🚑 Không tới được target → đi tới node gần nhất
+    return BuildPath(bestNode);
+}
+
     static bool IsValid(Vector2Int pos, int[,] grid, int w, int h)
     {
-        if (pos.x < 0 || pos.y < 0 || pos.x >= w || pos.y >= h) return false;
+        if (pos.x < 0 || pos.y < 0 || pos.x >= w || pos.y >= h)
+            return false;
+
         return grid[pos.y, pos.x] == 0;
     }
 
-    static Vector2Int WorldToGrid(Vector2 worldPos, Vector2 origin, float cellSize, int width, int height)
+    static int Heuristic(Vector2Int a, Vector2Int b)
     {
-        int x = Mathf.RoundToInt(Mathf.Abs(worldPos.x - origin.x) / cellSize);
-        int y = Mathf.RoundToInt(Mathf.Abs(worldPos.y - origin.y) / cellSize);
-        x = Mathf.Clamp(x, 0, width - 1);
-        y = Mathf.Clamp(y, 0, height - 1);
-        return new Vector2Int(x, y);
+        return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
     }
 
     static List<Vector2Int> BuildPath(Node endNode)
     {
         List<Vector2Int> path = new();
         Node current = endNode;
+
         while (current != null)
         {
             path.Add(current.pos);
             current = current.parent;
         }
+
         path.Reverse();
         return path;
     }
+}
+public class Node
+{
+    public Vector2Int pos;
+    public int gCost;
+    public int hCost;
+    public int fCost => gCost + hCost;
+    public Node parent;
 
-    static List<CellGrid> BuildPathCells(Node node, Dictionary<Vector2Int, CellGrid> cellMap)
+    public Node(Vector2Int pos)
     {
-        List<CellGrid> path = new();
-        while (node != null)
-        {
-            if (cellMap.TryGetValue(node.pos, out var c))
-                path.Add(c);
-            node = node.parent;
-        }
-        path.Reverse();
-        return path;
+        this.pos = pos;
     }
 }
