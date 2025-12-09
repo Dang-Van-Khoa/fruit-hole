@@ -157,15 +157,16 @@ public class GameManager : MonoBehaviour
 
     private void FindPathAStar()
     {
-        int[,] grid = new int[,] {
-            {0,0,0,0,1,0,0,0},
-            {0,1,1,1,1,0,0,0},
-            {0,0,0,0,1,0,0,0},
-            {0,0,1,1,1,0,0,0},
-            {0,0,0,0,1,0,0,0},
-        };
-        Vector2Int start = new(2, 0);
-        Vector2Int target = new(3, 2);
+        int size = 80;
+        int[,] grid = new int[size, size];
+
+// tạo tường zigzag
+        for (int x = 10; x < size; x += 10)
+        for (int y = 0; y < size; y++)
+            grid[y, x] = 1;
+
+        Vector2Int start = new(1, 1);
+        Vector2Int target = new(78, 78);
 
         var path = AStarPathFinding.FindPath(grid, start, target);
         //Debug.Log($"path found: {string.Join(",", path)}");
@@ -173,15 +174,16 @@ public class GameManager : MonoBehaviour
     [Button]
     private void FindPathIntBFS()
     {
-        int[,] grid = new int[,] {
-            {0,0,0,0,1,0,0,0},
-            {0,1,1,1,1,0,0,0},
-            {0,0,0,0,1,0,0,0},
-            {0,0,1,1,1,0,0,0},
-            {0,0,0,0,1,0,0,0},
-        };
-        Vector2Int start = new(2, 0);
-        Vector2Int target = new(3, 2);
+        int size = 80;
+        int[,] grid = new int[size, size];
+
+// tạo tường zigzag
+        for (int x = 10; x < size; x += 10)
+        for (int y = 0; y < size; y++)
+            grid[y, x] = 1;
+
+        Vector2Int start = new(1, 1);
+        Vector2Int target = new(78, 78);
 
         var path = FindPathBFSInt(grid, start, target);
         //Debug.Log($"path found: {string.Join(",", path)}");
