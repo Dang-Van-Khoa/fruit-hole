@@ -46,7 +46,9 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.15f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AStarOptimized.cs" />
     <Compile Include="Assets\Scripts\Fruit.cs" />
+    <Compile Include="Assets\Scripts\MinHeap.cs" />
     <Compile Include="Assets\Scripts\AStarPathFinding.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\CellGrid.cs" />

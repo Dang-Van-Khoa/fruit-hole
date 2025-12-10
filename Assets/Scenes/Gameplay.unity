@@ -9630,6 +9630,7 @@ MonoBehaviour:
   parentFruitOrange: {fileID: 1642602875}
   bigCupGreen: {fileID: 1183656151}
   bigCupOrange: {fileID: 197133996}
+  fruitRed: {fileID: 3702921109796308800}
   fillGreen: {fileID: 1891102532}
   fillOrange: {fileID: 1931609546}
   radius: 0.5
@@ -19804,8 +19805,8 @@ Transform:
   m_GameObject: {fileID: 3705048930215816087}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.81, y: 0.57, z: 0}
+  m_LocalScale: {x: 0.58, y: 0.58, z: 0.58}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1046581980}

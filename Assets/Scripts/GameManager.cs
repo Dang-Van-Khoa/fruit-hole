@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Transform> points, cupGreen, cupOrange;
     [SerializeField] private List<CupPouring> cupPouringGreen, cupPouringOrange;
     [SerializeField] private Transform holeGreen, holeOrange, blenderGreen, blenderOrange, parentFruitGreen,
-        parentFruitOrange, bigCupGreen, bigCupOrange;
+        parentFruitOrange, bigCupGreen, bigCupOrange, fruitRed;
 
     [SerializeField] private RectTransform fillGreen, fillOrange;
     [SerializeField] private float radius;
@@ -43,9 +43,11 @@ public class GameManager : MonoBehaviour
             new Vector2(3,1),
             new Vector2(4,2),
         };
-
+        var s = new Stopwatch();
+        s.Start();
         var path = FindPathBFSVector(grid, fruitGreen.First().fruit.position, holeGreen.position, obstacles);
-        Debug.Log($"path found: {string.Join(",", path)}");
+        s.Stop();
+        Debug.Log($"path found: {s.Elapsed.TotalMilliseconds}-{string.Join(",", path)}");
     }
     public List<Vector2> FindPathBFSVector(Vector2[,] grid, Vector2 start, Vector2 target,
         HashSet<Vector2> obstacles)
@@ -103,35 +105,43 @@ public class GameManager : MonoBehaviour
     {
         var s = new Stopwatch();
         s.Start();
-        var pointPos = points.Select(p => (Vector2)p.position).ToList();
-        var gridVector2 = new List<CellGrid>();
-        foreach (var p in pointPos)
-        {
-            gridVector2.Add(new CellGrid(p));
-        }
-
-        int width = 8;
-        int height = 8;
-
         
         var startV2 =  fruitGreen.First().fruit.position;
         var targetV2 = holeGreen.position;
-        float step = Vector2.Distance(fruitGreen.First().fruit.position, fruitGreen[1].fruit.position);
-        var path = AStarPathFinding.FindPath(gridVector2, startV2, targetV2, width, height, step);
-        s.Stop();
-        if (path != null)
-        {
-            StartCoroutine(MoveAlongPath(fruitGreen.First(), path.Select(p => p.pos).ToList(), targetV2));
-            Debug.Log($"path found: {s.Elapsed.TotalMilliseconds}-{string.Join(",", path.Select(p => p.pos))}");
-        }
-        else
-        {
-            Debug.Log("Không có đường đi");
-        }
-    }
+        int[,] grid;
+        Vector2 gridOrigin;
+        Vector2 cellSize;
+        int h = 8;
+        int w = 8;
+        grid = new int[h, w];
+        gridOrigin = points[0].position;
+        cellSize = new Vector2(Vector2.Distance(points.First().position, points[1].position),
+            Vector2.Distance(points.First().position, points[8].position));
 
+
+        for (int y = 0; y < h; y++)
+        for (int x = 0; x < w; x++)
+            grid[y, x] = 0;
+        Vector2Int startI = AStarOptimized.WorldToGrid(startV2, gridOrigin, cellSize, w, h);
+        Vector2Int targetI = AStarOptimized.WorldToGrid(targetV2, gridOrigin, cellSize, w, h);
+        var pathGrid = AStarOptimized.FindPath(grid, startI, targetI);
+
+        List<Vector2> pathWorld = new List<Vector2>();
+        for (int i = 0; i < pathGrid.Count; i++)
+            pathWorld.Add(AStarOptimized.GridToWorld(pathGrid[i], gridOrigin, cellSize));
+        s.Stop();
+        // foreach (var p in pathWorld)
+        // {
+        //     var obj = Instantiate(fruitRed, transform);
+        //     obj.position = p;
+        //     obj.gameObject.SetActive(true);
+        // }
+        StartCoroutine(MoveAlongPath(fruitGreen.First(), pathWorld, targetV2));
+        Debug.Log($"path found: {s.Elapsed.TotalMilliseconds}-{gridOrigin}-{cellSize}\n{string.Join(",", pathWorld)}");
+    }
+    
     [Button]
-    private void FindPathAVsBfs()
+    private void FindPathAStarVsBfs()
     {
         // ✅ warm up
         FindPathIntBFS();
@@ -157,34 +167,51 @@ public class GameManager : MonoBehaviour
 
     private void FindPathAStar()
     {
-        int size = 80;
-        int[,] grid = new int[size, size];
+//         int size = 80;
+//         int[,] grid = new int[size, size];
+//
+// // tạo tường zigzag
+//         for (int x = 10; x < size; x += 10)
+//         for (int y = 0; y < size; y++)
+//             grid[y, x] = 1;
+//
+//         Vector2Int start = new(1, 1);
+//         Vector2Int target = new(78, 78);
+        int[,] grid = new int[,] {
+            {0,0,0,0,1,0,0,0},
+            {0,1,1,1,1,0,0,0},
+            {0,0,0,0,1,0,0,0},
+            {0,0,1,1,1,0,0,0},
+            {0,0,0,0,1,0,0,0},
+        };
+        Vector2Int start = new(2, 0);
+        Vector2Int target = new(3, 2);
 
-// tạo tường zigzag
-        for (int x = 10; x < size; x += 10)
-        for (int y = 0; y < size; y++)
-            grid[y, x] = 1;
-
-        Vector2Int start = new(1, 1);
-        Vector2Int target = new(78, 78);
-
-        var path = AStarPathFinding.FindPath(grid, start, target);
+        var path = AStarOptimized.FindPath(grid, start, target);
         //Debug.Log($"path found: {string.Join(",", path)}");
     }
     [Button]
     private void FindPathIntBFS()
     {
-        int size = 80;
-        int[,] grid = new int[size, size];
-
-// tạo tường zigzag
-        for (int x = 10; x < size; x += 10)
-        for (int y = 0; y < size; y++)
-            grid[y, x] = 1;
-
-        Vector2Int start = new(1, 1);
-        Vector2Int target = new(78, 78);
-
+//         int size = 80;
+//         int[,] grid = new int[size, size];
+//
+// // tạo tường zigzag
+//         for (int x = 10; x < size; x += 10)
+//         for (int y = 0; y < size; y++)
+//             grid[y, x] = 1;
+//
+//         Vector2Int start = new(1, 1);
+//         Vector2Int target = new(78, 78);
+        int[,] grid = new int[,] {
+            {0,0,0,0,1,0,0,0},
+            {0,1,1,1,1,0,0,0},
+            {0,0,0,0,1,0,0,0},
+            {0,0,1,1,1,0,0,0},
+            {0,0,0,0,1,0,0,0},
+        };
+        Vector2Int start = new(2, 0);
+        Vector2Int target = new(3, 2);
         var path = FindPathBFSInt(grid, start, target);
         //Debug.Log($"path found: {string.Join(",", path)}");
     }
@@ -373,16 +400,36 @@ public class GameManager : MonoBehaviour
     private void FindAndMove(List<Fruit> fruit, Vector2 holePos)
     {
         if (fruit.Count < 1) return;
-        float step = Vector2.Distance(fruit.First().fruit.position, fruit[1].fruit.position); // khoảng cách giữa các pointPos
-        var pointPos = points.Select(p => (Vector2)p.position).ToList();
+        
+        int[,] grid;
+        Vector2 gridOrigin;
+        Vector2 cellSize;
+        int h = 8;
+        int w = 8;
+        grid = new int[h, w];
+        gridOrigin = points[0].position;
+        cellSize = new Vector2(Vector2.Distance(points.First().position, points[1].position),
+            Vector2.Distance(points.First().position, points[8].position));
+
+
+        for (int y = 0; y < h; y++)
+        for (int x = 0; x < w; x++)
+            grid[y, x] = 0;
         foreach (var f in fruit)
         {
             var targetPos = RandomPointInsideCircle(holePos, radius);
-            List<Vector2> path = FindPath(f.fruit.position, targetPos, step, pointPos, 0.1f);
             //Debug.Log("Path: " + string.Join(",", path));
             // thực hiện di chuyển theo path
+            Vector2Int startI = AStarOptimized.WorldToGrid(f.fruit.position, gridOrigin, cellSize, w, h);
+            Vector2Int targetI = AStarOptimized.WorldToGrid(targetPos, gridOrigin, cellSize, w, h);
+            var pathGrid = AStarOptimized.FindPath(grid, startI, targetI);
+
+            List<Vector2> pathWorld = new List<Vector2>();
+            for (int i = 0; i < pathGrid.Count; i++)
+                pathWorld.Add(AStarOptimized.GridToWorld(pathGrid[i], gridOrigin, cellSize));
+            
             if (f.move != null) StopCoroutine(f.move);
-            f.move = StartCoroutine(MoveAlongPath(f, path, targetPos));
+            f.move = StartCoroutine(MoveAlongPath(f, pathWorld, targetPos));
         }
     }
     List<Vector2> FindPath(Vector2 start, Vector2 goal, float step, List<Vector2> pos, float tolerance)
@@ -568,4 +615,14 @@ public class GameManager : MonoBehaviour
         float distance = Mathf.Sqrt(Random.Range(0f, 1f)) * r;
         return center + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * distance;
     }
+    
+    public static Vector2 RandomPointInRing(Vector2 center, float minRadius, float maxRadius)
+    {
+        float angle = Random.Range(0f, Mathf.PI * 2f); // ngẫu nhiên góc
+        float radius = Mathf.Sqrt(Random.Range(minRadius * minRadius, maxRadius * maxRadius)); // radius theo diện tích
+
+        Vector2 offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+        return center + offset;
+    }
+
 }

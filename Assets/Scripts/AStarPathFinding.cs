@@ -27,7 +27,6 @@ public static List<CellGrid> FindPath(
         if (y >= height)
             break;
         Vector2Int key = new Vector2Int(x, y);
-        gridVector2[i].posInt = key;
         cellMap[key] = gridVector2[i];
     }
 
